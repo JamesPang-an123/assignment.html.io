@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>andre</title>
+  <style type="text/CSS">
+    body {
+      background-color: grey;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    #container {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #sumForm {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div>
+      <h2>Sum of Numbers in Range</h2>
+
+      <form id="sumForm">
+        <label for="startNumber">Starting Number:</label>
+        <input type="number" id="startNumber" required>
+
+        <br>
+
+        <label for="endNumber">Ending Number:</label>
+        <input type="number" id="endNumber" required>
+
+        <br>
+
+        <button type="submit">Calculate Sum</button>
+      </form>
+
+      <div id="result"></div>
+      <div id="error" class="error-message"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    document.getElementById('sumForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      var startNumber = parseInt(document.getElementById('startNumber').value);
+      var endNumber = parseInt(document.getElementById('endNumber').value);
+
+      if (isNaN(startNumber) || isNaN(endNumber)) {
+        document.getElementById('error').innerHTML = 'Please enter valid numbers.';
+        document.getElementById('result').innerHTML = '';
+        return;
+      }
+
+      var sum = 0;
+      var numbersAdded = [];
+
+      for (var i = startNumber; i <= endNumber; i++) {
+        sum += i;
+        numbersAdded.push(i);
+      }
+
+      document.getElementById('error').innerHTML = '';
+      document.getElementById('result').innerHTML = 'The sum is: ' + sum + '<br>' + 'Numbers added: ' + numbersAdded.join(', ');
+    });
+  </script>
+</body>
+</html>
